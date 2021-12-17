@@ -1,0 +1,26 @@
+{% extends "background.html" %}
+{%block body2 %}
+   <h1><div style = "Width:380px; border-radius:20px"> Add Book </h1>
+<p>This form will add a book if it does not already exist </p>
+    <hr>
+
+<form action="{{url_for('app.add_book')}}" method="post">
+    <input type="text" placeholder="Title" name="title">
+    <input type="text" placeholder="Authors" name="authors">
+    <input type="text" placeholder="Genre" name="genre">
+    <input type="text" placeholder="Availability" name="availability">
+    <input type="submit" value="Submit">
+</form>
+
+<br>
+<br>
+
+<h1><div style = "Width:380px; border-radius:20px"> Delete Book </h1>
+<p>This form will delete an existing book</p>
+    <hr>
+
+<form action="{{url_for('app.delete_book')}}" method="post">
+    <input type="text" placeholder="Bookname" name="title">
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+  
+{%block body %}  
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('app.showbooks') }}" style="color:lightyellow">Catalogue</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="dropdown" >
+          <a class="navbar-brand" href="#" class="dropdown-toggle" data-toggle="dropdown" > <span class="nav-label" style="color:lightyellow">Admin</span> <span class="caret" style="color: lightyellow"></span></a>
+              <ul class="dropdown-menu navbar-inverse">
+                  <li><a href="{{ url_for('app.issue_book') }}" style="color:lightyellow">Issue Book</a></li>
+                  <li><a href="{{ url_for('app.return_book') }}" style="color:lightyellow">Return/Mark Late Book</a></li>
+                  <li><a href="{{ url_for('app.add_book') }}" style="color:lightyellow">Manage Books</a></li>
+                  <li><a href="{{ url_for('app.add_member') }}" style="color:lightyellow">Manage Members</a></li>
+                  <li><a href="{{ url_for('app.showmembers') }}" style="color:lightyellow">Show All Members</a></li>
+              </ul>
+          </li>
+          <li class="dropdown" >
+            <a class="navbar-brand" href="#" class="dropdown-toggle" data-toggle="dropdown" > <span class="nav-label" style="color:lightyellow">Member</span> <span class="caret"></span></a>
+                <ul class="dropdown-menu navbar-inverse">
+                    <li><a href="{{ url_for('app.showmybooks') }}" style="color:lightyellow">My Issued Books</a></li>
+                    <li><a href="{{ url_for('app.signout') }}" style="color:lightyellow">Sign Out</a></li>
+                </ul>
+          </li>
+      </ul>
+      <form class="navbar-form navbar-right" action="{{ url_for('app.searchbook') }}" method="POST">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for book" name="search">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <h4 class="container-fluid" style="text-align: center; color:lightyellow">
+       Welcome {{ username }}!
+      </h4>
+    </div>
+  </nav>
+
+<div style="border-radius: 1px; background-color: lightyellow; width: 85%; min-width:100px; padding:5px 5px 5px 5px;
+margin:100px;" >
+    {% block body2 %}
+    {% endblock %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "background.html" %}
+{%block body2 %}
+   <h1><div style = "Width:280px; border-radius:10px"> Members List </h1>
+    <hr>
+<table class = "table table-bordered">
+    <tr>
+        <th style="width:400px">Name</th>
+        <th style="width:400px">Email</th>
+    </tr>
+    {% for member in memberlist %}
+    <tr>
+        <td  style="width:400px">{{ member.username }}</td>
+        <td  style="width:400px">{{ member.email }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

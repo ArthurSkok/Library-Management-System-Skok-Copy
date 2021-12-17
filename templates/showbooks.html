@@ -1,0 +1,42 @@
+{% extends "background.html" %}
+{%block body2 %}
+   <h1>
+       {% if frametitle == "Your Books" %}
+       My Issued Books 
+       {% elif frametitle == "Search Books" %}
+       Search Book Results 
+       {% else %}
+       Book Catalogue
+       {% endif %}
+   </h1>
+    <hr>
+
+{% if frametitle == "Your Books" %}
+<div>Your Fines: ${{ cost }}</div>
+{% endif %}
+
+<table class = "table table-bordered">
+    <tr>
+        <th style="width:800px">Title</th>
+        {% if frametitle == "Your Books" %}
+        <th style="width:800px">Issued Date</th>
+        {% else %}
+        <th style="width:800px">Authors<br></th>
+        <th style="width:500px">Genre<br></th>
+        <th style="width:80px">Availability<br></th>
+        {% endif %}
+    </tr>
+    {% for book in booklist %}
+    <tr>
+        <td  style="width:800px">{{ book.title }}<br></td>
+        {% if frametitle == "Your Books" %}
+        <td  style="width:800px">{{ book.issuedt }}<br></td>
+        {% else %}
+        <td  style="width:800px">{{ book.authors }}<br></td>
+        <td  style="width:500px">{{ book.genre }}<br></td>
+        <td  style="width:90px">{{ book.availability }}<br></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

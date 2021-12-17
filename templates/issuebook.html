@@ -1,0 +1,66 @@
+{% extends "background.html" %}
+{%block body2 %}
+<h1><div style = "Width:220px; border-radius:10px">
+{% if ret == True %}
+   Return Book
+{% else %}
+   Issue Book
+{% endif %}
+    </h1>
+    <hr>
+
+    {% if ret == True %}
+    <p>This form will return a book back to the database. </p>
+    <form action= "{{url_for('app.return_book')}}" method="post">
+        <input type="text" placeholder="Title" name="title">
+        <input type="text" placeholder="Member email" name="email">
+    {% else %}
+    <p> This form will issue a book to a user.  </p>
+    <form action= "{{url_for('app.issue_book')}}" method="post">
+        <input type="text" placeholder="Title" name="title">
+        <input type="text" placeholder="Member email" name="email">
+    {% endif %}
+    <input type="submit" value="Submit">
+</form>
+{% if ret == True %}
+<h3>Issued Books</h3>
+{% else %}
+<h3>Available Books</h3>
+{% endif %}
+<hr>
+
+<table class = "table table-bordered">
+    <tr>
+        <th style="width:400px">Title</th>
+        {% if ret == False %}
+        <th style="width:400px">Authors</th>
+        <th style="width:400px">Genre</th>
+        {% else %}
+        <th style="width:400px">Email</th>
+        <th style="width:400px">Issued Date</th>
+        <th style="width:400px">Mark Book Late</th>
+        {% endif %}
+    </tr>
+
+    {% for book in booklist %}
+    <tr>
+        {% if ret == True %}
+        <td  style="width:400px">{{ book.title }}</td>
+        <td  style="width:400px">{{ book.email }}</td>
+        <td  style="width:400px">{{ book.issuedt }}</td>
+        <td  style="width:400px">
+            <form action="{{url_for('app.issue_late')}}" method="post">
+                <button type="submit" >Mark Late {{ book.title }}</button>
+                <input type="hidden" value = "{{book.title}}" name = "title">
+            </form>
+        </td>
+        {% else %}
+        <td  style="width:400px">{{ book.title }}</td>
+        <td  style="width:400px">{{ book.authors }}</td>
+        <td  style="width:400px">{{ book.genre }}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

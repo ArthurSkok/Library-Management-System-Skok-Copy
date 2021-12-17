@@ -1,0 +1,30 @@
+{% extends "background.html" %}
+{%block body2 %}
+   <h1><div style = "Width:380px; border-radius:10px">
+       Add Member </h1>
+    <p> This form will add a new member to the database.  </p>
+    <hr>
+
+<form action="{{url_for('app.add_member')}}" method="post">
+
+    <input type="text" placeholder="Name" name="username">
+    <input type="text" placeholder="Email" name="email">
+    <input type="password" placeholder="Password" name="password">
+    <input type="submit" value="Submit">
+</form>
+
+<br>
+<br>
+
+<h1><div style = "Width:380px; border-radius:10px">
+    Delete Member </h1>
+ <p> This form will delete an existing member from the database.  </p>
+ <hr>
+
+<form action="{{url_for('app.delete_member')}}" method="post">
+
+    <input type="text" placeholder="Email" name="email">
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
