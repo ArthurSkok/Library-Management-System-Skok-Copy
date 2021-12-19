@@ -1,6 +1,6 @@
 # Databases Final Project: Library Management System
 
-#Information regarding how to run our program
+**Information regarding how to run our program
 
 * To run our program, first clone the repository. 
 * It could be helpful to create a folder and store the cloned files in that folder. 
